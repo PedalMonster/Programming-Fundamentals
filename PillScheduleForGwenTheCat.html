@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>Cat Pill Schedule</title>
+</head>
+<body>
+
+<script>
+function getUserInput(promptMessage) {
+    return prompt(promptMessage);
+}
+
+function displaySchedule(catName, morningTime, eveningTime) {
+    document.write(`Pill Schedule for ${catName}:<br>`);
+    document.write(`Morning: ${morningTime}<br>`);
+    document.write(`Evening: ${eveningTime}<br>`);
+}
+
+function isValidTime(time) {
+    const timePattern = /^([01]\d|2[0-3]):([0-5]\d)$/;
+    return timePattern.test(time);
+}
+
+function checkFridgeForOpenCan() {
+    return Math.random() > 0.5; 
+}
+
+function main() {
+    var catName = getUserInput("Thanks for watching our cat while we are away!  Enter the cat's name with the thyroid condition so we can make her pill schedule.");
+    var morningTime, eveningTime;
+
+    while (true) {
+        morningTime = getUserInput("Enter the morning pill time (HH:MM):");
+        if (isValidTime(morningTime)) {
+            break;
+        } else {
+            document.write("Invalid time format. Please enter time in HH:MM format so they get a morning pill.<br>");
+        }
+    }
+
+    while (true) {
+        eveningTime = getUserInput("Enter the evening pill time (HH:MM):");
+        if (isValidTime(eveningTime)) {
+            break;
+        } else {
+            document.write("Invalid time format! Please enter time in HH:MM format so they get the night time pill.<br>");
+        }
+    }
+
+    if (checkFridgeForOpenCan()) {
+        var response = getUserInput("Is there an open can of cat food in the fridge? (yes/no)");
+        document.write(response === "yes" ? "Use the open can of cat food.<br>" : "Open a new can of cat food.<br>");
+    } else {
+        document.write("Open a new can of cat food from the food bin.<br>");
+    }
+
+    document.write(catName + " needs her pill at " + morningTime + " AM and " + eveningTime + " PM. The pills are in the cabinet above the sink. Thanks!<br>");
+}
+
+main();
+checkFridgeForOpenCan();
+</script>
+
+</body>
+</html>
